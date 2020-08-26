@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
-class Home extends React.Component {
+class Home extends Component {
   render() {
+    const { user } = this.props;
+
     const biggerLead = {
       fontSize: 1.4 + "em",
       fontWeight: 200,
@@ -22,19 +24,25 @@ class Home extends React.Component {
               picks random users to award giveaways. It's a good example of a
               Single Page Application which includes connection to a database
               and routing. It's a practical way to learn{" "}
-              <a href="https://reactjs.org/">React</a>
-              with <a href="https://firebase.google.com">Firebase</a>.
+              <a href="https://reactjs.org/">React</a> with{" "}
+              <a href="https://firebase.google.com">Firebase</a>.
             </p>
 
-            <a href="/register" className="btn btn-outline-primary mr-2">
-              Register
-            </a>
-            <a href="/login" className="btn btn-outline-primary mr-2">
-              Log In
-            </a>
-            <a href="/meetings" className="btn btn-primary">
-              Meetings
-            </a>
+            {user == null && (
+              <>
+                <a href="/register" className="btn btn-outline-primary mr-2">
+                  Register
+                </a>
+                <a href="/login" className="btn btn-outline-primary mr-2">
+                  Log In
+                </a>
+              </>
+            )}
+            {user && (
+              <a href="/meetings" className="btn btn-primary">
+                Meetings
+              </a>
+            )}
           </div>{" "}
           {/* columns */}
         </div>

@@ -1,9 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Home from "./Home";
 
-function App() {
-  return <Home />;
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: null,
+    };
+  }
+
+  render() {
+    return <Home user={this.state.user} />;
+  }
 }
 
 export default App;
