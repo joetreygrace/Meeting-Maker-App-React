@@ -1,12 +1,9 @@
 import React from "react";
-import "./App.css";
+import Home from "./Home";
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Meeting Log</h1>
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
