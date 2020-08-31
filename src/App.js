@@ -13,8 +13,17 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: "Trey",
+      user: null,
     };
+  }
+
+  componentDidMount() {
+    const ref = firebase.database().ref("user");
+
+    ref.on("value", (snapshot) => {
+      let FbUser = snapshot.val();
+      this.setState({ user: FbUser });
+    });
   }
 
   render() {
