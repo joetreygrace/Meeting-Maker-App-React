@@ -7,12 +7,13 @@ import Login from "./Login";
 import Meetings from "./Meetings";
 import Register from "./Register";
 import { Router } from "@reach/router";
+import firebase from "./Firebase";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: null,
+      user: "Trey",
     };
   }
 
