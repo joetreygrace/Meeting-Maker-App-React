@@ -6,8 +6,11 @@ class Attendees extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchQuery: "",
       displayAttendees: [],
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -31,17 +34,41 @@ class Attendees extends Component {
     });
   }
 
+  handleChange(e) {
+    const itemName = e.target.name;
+    const itemValue = e.target.value;
+
+    this.setState({ [itemName]: itemValue });
+  }
+
   render() {
+    const dataFilter = (item) =>
+      item.attendeeName
+        .toLowerCase()
+        .match(this.state.searchQuery.toLowerCase()) && true;
+    const filteredAttendees = this.state.displayAttendees.filter(dataFilter);
     return (
       <div className="container mt-4">
         <div className="row justify-content-center">
           <div className="col-md-8">
             <h1 className="font-weight-light text-center">Attendees</h1>
+            <div className="card bg-light mb-4">
+              <div className="card-body text-center">
+                <input
+                  type="text"
+                  name="searchQuery"
+                  value={this.state.searchQuery}
+                  placeholder="Search Attendees"
+                  className="form-control"
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
           </div>
         </div>
         <AttendeesList
           userID={this.props.userID}
-          attendees={this.state.displayAttendees}
+          attendees={filteredAttendees}
           adminUser={this.props.adminUser}
           meetingId={this.props.meetingId}
         />
