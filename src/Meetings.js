@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MeetingsList from "./MeetingsList";
 
 class Meetings extends Component {
   constructor(props) {
@@ -71,7 +72,7 @@ class Meetings extends Component {
               ) : null}
               {this.props.meetings && (
                 <div className="list-group list-group-flush">
-                  <MeetingList meetings={this.props.meetings} />
+                  <MeetingsList meetings={this.props.meetings} />
                 </div>
               )}
             </div>
