@@ -7,6 +7,7 @@ import Login from "./Login";
 import Meetings from "./Meetings";
 import Register from "./Register";
 import CheckIn from "./CheckIn";
+import Attendees from "./Attendees";
 import { Router, navigate } from "@reach/router";
 import firebase from "./Firebase";
 
@@ -102,6 +103,10 @@ class App extends Component {
             meetings={this.state.meetings}
             addMeeting={this.addMeeting}
             userID={this.state.userID}
+          />
+          <Attendees
+            path="/attendees/:userID/:meetingId"
+            adminUser={this.state.userID}
           />
           <CheckIn path="/checkin/:userID/:meetingId" />
           <Register
