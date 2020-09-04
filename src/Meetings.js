@@ -60,6 +60,22 @@ class Meetings extends Component {
               </div>
             </div>
           </div>
+          <div className="col-11 col-md-6 text-center">
+            <div className="card border-top-0 rounded-0">
+              {this.props.meetings && this.props.meetings.length ? (
+                <div className="card-body py-2">
+                  <h4 className="card-title font-weight-light m-0">
+                    Your Meetings
+                  </h4>
+                </div>
+              ) : null}
+              {this.props.meetings && (
+                <div className="list-group list-group-flush">
+                  <MeetingList meetings={this.props.meetings} />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -27,6 +27,24 @@ class App extends Component {
           displayName: FbUser.displayName,
           userID: FbUser.uid,
         });
+        const meetingsRef = firebase.database().ref("meetings/" + FbUser.uid);
+
+        meetingsRef.on("value", (snapshot) => {
+          let meetings = snapshot.val();
+          let meetingsList = [];
+          for (let item in meetings) {
+            meetingsList.push({
+              meetingId: item,
+              meetingName: meetings[item].meetingName,
+            });
+          }
+          this.setState({
+            meetings: meetingsList,
+            howManyMeetings: meetingsList.length,
+          });
+        });
+      } else {
+        this.setState({ user: null });
       }
     });
   }
@@ -65,6 +83,7 @@ class App extends Component {
     const ref = firebase.database().ref(`meetings/${this.state.user.uid}`);
     ref.push({ meetingName: meetingName });
   };
+
   render() {
     return (
       <>
@@ -80,6 +99,7 @@ class App extends Component {
           <Meetings
             path="/meetings"
             user={this.state.user}
+            meetings={this.state.meetings}
             addMeeting={this.addMeeting}
           />
           <Register
