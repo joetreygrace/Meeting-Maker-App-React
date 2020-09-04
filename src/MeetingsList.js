@@ -39,7 +39,7 @@ class MeetingsList extends Component {
               className="btn btn-sm btn-outline-secondary"
               title="Check In"
               onClick={() =>
-                navigate(`/checkin/${this.props.userID}/${this.meetingId}`)
+                navigate(`/checkin/${this.props.userID}/${item.meetingId}`)
               }
             >
               <FaLink />
